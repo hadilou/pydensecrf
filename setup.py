@@ -10,12 +10,12 @@ from setuptools import setup
 # Otherwise, use the pre-built (by someone who has Cython, i.e. me) wrapper `.cpp` files.
 try:
     from Cython.Build import cythonize
-    ext_modules = cythonize(['pydensecrf/eigen.pyx', 'pydensecrf/densecrf.pyx'])
+    ext_modules = cythonize(['pydensecrf/pydensecrf/eigen.pyx', 'pydensecrf/pydensecrf/densecrf.pyx'])
 except ImportError:
     from setuptools.extension import Extension
     ext_modules = [
-        Extension("pydensecrf/eigen", ["pydensecrf/eigen.cpp", "pydensecrf/eigen_impl.cpp"], language="c++", include_dirs=["pydensecrf/densecrf/include"]),
-        Extension("pydensecrf/densecrf", ["pydensecrf/densecrf.cpp", "pydensecrf/densecrf/src/densecrf.cpp", "pydensecrf/densecrf/src/unary.cpp", "pydensecrf/densecrf/src/pairwise.cpp", "pydensecrf/densecrf/src/permutohedral.cpp", "pydensecrf/densecrf/src/optimization.cpp", "pydensecrf/densecrf/src/objective.cpp", "pydensecrf/densecrf/src/labelcompatibility.cpp", "pydensecrf/densecrf/src/util.cpp", "pydensecrf/densecrf/external/liblbfgs/lib/lbfgs.c"], language="c++", include_dirs=["pydensecrf/densecrf/include", "pydensecrf/densecrf/external/liblbfgs/include"]),
+        Extension("pydensecrf/pydensecrf/eigen", ["pydensecrf/pydensecrf/eigen.cpp", "pydensecrf/pydensecrf/eigen_impl.cpp"], language="c++", include_dirs=["pydensecrf/pydensecrf/densecrf/include"]),
+        Extension("pydensecrf/pydensecrf/densecrf", ["pydensecrf/pydensecrf/densecrf.cpp", "pydensecrf/pydensecrf/densecrf/src/densecrf.cpp", "pydensecrf/pydensecrf/densecrf/src/unary.cpp", "pydensecrf/pydensecrf/densecrf/src/pairwise.cpp", "pydensecrf/pydensecrf/densecrf/src/permutohedral.cpp", "pydensecrf/pydensecrf/densecrf/src/optimization.cpp", "pydensecrf/densecrf/src/objective.cpp", "pydensecrf/pydensecrf/densecrf/src/labelcompatibility.cpp", "pydensecrf/pydensecrf/densecrf/src/util.cpp", "pydensecrf/pydensecrf/densecrf/external/liblbfgs/lib/lbfgs.c"], language="c++", include_dirs=["pydensecrf/pydensecrf/densecrf/include", "pydensecrf/pydensecrf/densecrf/external/liblbfgs/include"]),
     ]
 
 setup(
